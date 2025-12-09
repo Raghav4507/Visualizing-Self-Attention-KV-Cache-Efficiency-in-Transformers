@@ -1,46 +1,74 @@
 # Visualizing-Self-Attention-KV-Cache-Efficiency-in-Transformers
 
-This project is an interactive **Streamlit** application that demonstrates how Transformer models work internally and why **KV-cache** significantly speeds up autoregressive text generation. It uses **DistilGPT-2** to visualize self-attention patterns and benchmark generation performance with and without caching.
+An interactive **Streamlit** application for understanding Transformer internals and inference optimization.  
+This project visualizes **multi-head self-attention** and benchmarks **KV-cache vs. non-cached** autoregressive generation using **DistilGPT-2**.
+
+---
+
+## Overview
+
+Transformer self-attention has quadratic complexity with respect to sequence length, making inference expensive during autoregressive generation. Modern language models solve this using **Key–Value (KV) caching**, which reuses previously computed attention states.
+
+This project provides a clear, hands-on demonstration of both concepts through visualization and benchmarking.
+
+---
 
 ## Features
 
-- Self-Attention visualizer with layer- and head-level heatmaps  
-- KV-cache vs no-cache text generation benchmark  
-- Per-token timing and speedup comparison  
-- Educational focus on Transformer internals and inference optimization  
+- Self-attention heatmaps for each layer and head  
+- Token-level attention visualization  
+- Autoregressive text generation benchmark  
+- Performance comparison with and without KV-cache  
+- Educational focus on Transformer internals  
 
-## Tech Stack
+---
 
-- Python  
-- PyTorch  
-- Hugging Face Transformers  
-- Streamlit  
-- Matplotlib, Seaborn, NumPy  
-
-## Setup
+## Installation
 
 ```bash
 python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-Run the App
-bash
-Copy code
+
+---
+
+Running the App
+
+```bash
 streamlit run app.py
 
+---
+
 Usage
-Use Self-Attention Visualizer to explore attention patterns across layers and heads
 
-Use KV-Cache Benchmark to compare generation speed with and without KV-cache
+Self-Attention Visualizer
+Explore how attention is distributed across tokens for different layers and heads.
 
-Check About section for theoretical background and references
+KV-Cache Benchmark
+Compare generation time per token with and without KV-cache to observe inference speedups.
+
+About Section
+Provides theoretical background and learning references.
+
+---
 
 Why KV-Cache Matters
-During autoregressive generation, KV-cache avoids recomputing attention for the full prefix at every step by reusing past key/value states. This turns quadratic per-token computation into near-linear cost, enabling efficient inference in modern large language models.
+
+In naive autoregressive decoding, the model recomputes attention over the entire sequence for every new token, leading to quadratic per-token computation. KV-caching stores past key/value tensors and reuses them during generation, reducing computation to near-linear complexity and enabling efficient inference in large language models.
+
+---
+
+Model
+
+DistilGPT-2
+Loaded with attention outputs enabled for visualization and caching support for benchmarking.
+
+---
 
 References
-Vaswani et al., Attention Is All You Need
 
-Radford et al., GPT-2
+- Vaswani et al., *Attention Is All You Need*  
+- Radford et al., *Language Models are Unsupervised Multitask Learners (GPT-2)*  
+- Hugging Face Transformers Documentation
 
-Hugging Face Transformers
+
