@@ -29,43 +29,43 @@ This project provides a clear, hands-on demonstration of both concepts through v
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-
+```
 ---
 
-Running the App
+## Running the App
 
 ```bash
 streamlit run app.py
-
+```
 ---
 
-Usage
+## Usage
 
-Self-Attention Visualizer
+### Self-Attention Visualizer
 Explore how attention is distributed across tokens for different layers and heads.
 
-KV-Cache Benchmark
+### KV-Cache Benchmark
 Compare generation time per token with and without KV-cache to observe inference speedups.
 
-About Section
+### About Section
 Provides theoretical background and learning references.
 
 ---
 
-Why KV-Cache Matters
+## Why KV-Cache Matters
 
 In naive autoregressive decoding, the model recomputes attention over the entire sequence for every new token, leading to quadratic per-token computation. KV-caching stores past key/value tensors and reuses them during generation, reducing computation to near-linear complexity and enabling efficient inference in large language models.
 
 ---
 
-Model
+## Model
 
 DistilGPT-2
 Loaded with attention outputs enabled for visualization and caching support for benchmarking.
 
 ---
 
-References
+## References
 
 - Vaswani et al., *Attention Is All You Need*  
 - Radford et al., *Language Models are Unsupervised Multitask Learners (GPT-2)*  
