@@ -1,0 +1,8 @@
+torch
+transformers
+streamlit
+matplotlib
+numpy
+tqdm
+watchdog
+seaborn
